@@ -259,6 +259,12 @@
                                 <rect key="frame" x="36" y="308" width="20" height="20"/>
                                 <animations/>
                             </activityIndicatorView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fXb-Mt-IhM">
+                                <rect key="frame" x="20" y="389" width="276" height="30"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -296,6 +302,7 @@
                         <outlet property="repeatedPasswordValidationOutlet" destination="HDF-SC-Wnw" id="vBg-dz-A5O"/>
                         <outlet property="signingUpOulet" destination="Jyp-VX-hwt" id="BxM-xY-Ftc"/>
                         <outlet property="signupOutlet" destination="kN3-eg-qK4" id="kps-bx-jNo"/>
+                        <outlet property="twoWayBindingTextField" destination="fXb-Mt-IhM" id="2gz-W5-kbq"/>
                         <outlet property="usernameOutlet" destination="5st-ss-RHs" id="UAl-Oj-FOi"/>
                         <outlet property="usernameValidationOutlet" destination="Dba-AF-T8S" id="OWD-bu-szJ"/>
                     </connections>

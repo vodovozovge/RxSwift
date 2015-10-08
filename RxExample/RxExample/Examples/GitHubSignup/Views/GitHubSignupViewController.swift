@@ -78,6 +78,17 @@ class ValidationService {
     }
 }
 
+extension Variable {
+    public func twoWayBind<O: protocol<ObserverType, ObservableType> where O.E == E>(observer: O) -> Disposable {
+        let d1 = self.bindTo(observer)
+        let d2 = observer
+            .subscribeNext { next in
+                self.value = next
+            }
+        return CompositeDisposable(d1, d2)
+    }
+}
+
 class GitHubSignupViewController : ViewController {
     @IBOutlet weak var usernameOutlet: UITextField!
     @IBOutlet weak var usernameValidationOutlet: UILabel!
@@ -90,6 +101,10 @@ class GitHubSignupViewController : ViewController {
     
     @IBOutlet weak var signupOutlet: UIButton!
     @IBOutlet weak var signingUpOulet: UIActivityIndicatorView!
+
+    @IBOutlet weak var twoWayBindingTextField: UITextField!
+
+    let variable = Variable("initial")
 
     struct ValidationColors {
         static let okColor = UIColor(red: 138.0 / 255.0, green: 221.0 / 255.0, blue: 109.0 / 255.0, alpha: 1.0)
@@ -223,6 +238,18 @@ class GitHubSignupViewController : ViewController {
                 }
             }
             .addDisposableTo(disposeBag)
+
+
+
+        variable.twoWayBind(self.twoWayBindingTextField.rx_text)
+            .addDisposableTo(disposeBag)
+
+        variable
+            .subscribeNext { text in
+                print(text)
+            }
+            .addDisposableTo(disposeBag)
+
     }
    
     // This is one of the reasons why it's a good idea for disposal to be detached from allocations.
